@@ -1,0 +1,170 @@
+<svg viewBox="0 0 920 1030" xmlns="http://www.w3.org/2000/svg" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title>cs-biomed-paper writing workflow</title>
+  <desc>A flowchart: a Stage 0 alignment gate, a ten-stage selection-to-submission rail with runnable scripts attached, a pre-submission audit and reviewer loops that return to earlier stages, and a legend mapping paper types to mandatory reporting standards plus the always-on integrity floor.</desc>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#d97706" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- baked background so it renders the same on any host -->
+  <rect x="0.5" y="0.5" width="919" height="1029" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+
+  <!-- ============ HEADER ============ -->
+  <text x="64" y="40" font-size="11" font-weight="700" letter-spacing="2.5" fill="#6366f1">CODEX SKILL · cs-biomed-paper</text>
+  <text x="64" y="66" font-size="21" font-weight="700" fill="#1f2937">论文写作流程 · Selection → Submission → Rebuttal</text>
+  <text x="64" y="86" font-size="12.5" fill="#64748b">10 stages on one rail · amber = quality gate &amp; loop · grey pill = runnable script</text>
+  <line x1="64" y1="100" x2="856" y2="100" stroke="#e2e8f0"/>
+
+  <!-- ============ CONTINUOUS RAIL (behind cards) ============ -->
+  <line x1="214" y1="184" x2="214" y2="964" stroke="#6366f1" stroke-width="2" stroke-opacity="0.35" stroke-linecap="round"/>
+
+  <!-- ============ LOOP-BACKS (amber dashed) ============ -->
+  <path d="M64,743 L40,743 Q32,743 32,731 L32,417 Q32,405 44,405 L60,405" fill="none" stroke="#d97706" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+  <path d="M64,983 L22,983 Q14,983 14,971 L14,351 Q14,339 26,339 L60,339" fill="none" stroke="#d97706" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+
+  <!-- ============ STAGE 0 GATE ============ -->
+  <rect x="64" y="118" width="300" height="58" rx="13" fill="#d97706" fill-opacity="0.10" stroke="#d97706" stroke-width="1.6"/>
+  <rect x="64" y="130" width="5" height="34" rx="2.5" fill="#d97706"/>
+  <circle cx="98" cy="147" r="15" fill="#d97706"/>
+  <text x="98" y="152" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">0</text>
+  <text x="122" y="142" font-size="14" font-weight="700" fill="#1f2937">Alignment gate</text>
+  <text x="122" y="161" font-size="11" fill="#64748b">claim · evidence · boundary</text>
+
+  <!-- ============ STAGE CARDS ============ -->
+  <!-- 01 -->
+  <rect x="64" y="184" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="196" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="209" r="14" fill="#6366f1"/><text x="98" y="214" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+  <text x="122" y="214" font-size="13.5" fill="#1f2937">Topic &amp; novelty claim</text>
+
+  <!-- 02 -->
+  <rect x="64" y="250" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="262" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="275" r="14" fill="#6366f1"/><text x="98" y="280" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+  <text x="122" y="280" font-size="13.5" fill="#1f2937">Literature synthesis</text>
+  <rect x="376" y="262" width="180" height="26" rx="13" fill="#eef2f7" stroke="#e2e8f0"/>
+  <circle cx="390" cy="275" r="2.4" fill="#6366f1"/>
+  <text x="399" y="279" font-size="10" font-family="monospace" fill="#64748b">ref_search_verify.py</text>
+
+  <!-- 03 -->
+  <rect x="64" y="316" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="328" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="341" r="14" fill="#6366f1"/><text x="98" y="346" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+  <text x="122" y="346" font-size="13.5" fill="#1f2937">Method design</text>
+
+  <!-- 04 -->
+  <rect x="64" y="382" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="394" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="407" r="14" fill="#6366f1"/><text x="98" y="412" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+  <text x="122" y="412" font-size="13.5" fill="#1f2937">Experiment &amp; statistics</text>
+  <rect x="376" y="394" width="188" height="26" rx="13" fill="#eef2f7" stroke="#e2e8f0"/>
+  <circle cx="390" cy="407" r="2.4" fill="#6366f1"/>
+  <text x="399" y="411" font-size="10" font-family="monospace" fill="#64748b">stats_leakage_lint.py</text>
+
+  <!-- 05 -->
+  <rect x="64" y="448" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="460" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="473" r="14" fill="#6366f1"/><text x="98" y="478" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">5</text>
+  <text x="122" y="478" font-size="13.5" fill="#1f2937">Submission figures</text>
+  <rect x="376" y="460" width="170" height="26" rx="13" fill="#eef2f7" stroke="#e2e8f0"/>
+  <circle cx="390" cy="473" r="2.4" fill="#6366f1"/>
+  <text x="399" y="477" font-size="10" font-family="monospace" fill="#64748b">figure_template.py</text>
+
+  <!-- 06 -->
+  <rect x="64" y="514" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="526" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="539" r="14" fill="#6366f1"/><text x="98" y="544" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">6</text>
+  <text x="122" y="544" font-size="13.5" fill="#1f2937">Section drafting</text>
+
+  <!-- 07 -->
+  <rect x="64" y="580" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="592" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="605" r="14" fill="#6366f1"/><text x="98" y="610" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">7</text>
+  <text x="122" y="610" font-size="13.5" fill="#1f2937">English polishing (zh→en)</text>
+  <rect x="376" y="592" width="204" height="26" rx="13" fill="#eef2f7" stroke="#e2e8f0"/>
+  <circle cx="390" cy="605" r="2.4" fill="#6366f1"/>
+  <text x="399" y="609" font-size="10" font-family="monospace" fill="#64748b">journal_style_profile.py</text>
+
+  <!-- 08 -->
+  <rect x="64" y="646" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="658" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="671" r="14" fill="#6366f1"/><text x="98" y="676" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">8</text>
+  <text x="122" y="676" font-size="13.5" fill="#1f2937">FAIR · citation · ethics</text>
+
+  <!-- 09 gate -->
+  <rect x="64" y="712" width="300" height="58" rx="13" fill="#d97706" fill-opacity="0.10" stroke="#d97706" stroke-width="1.6"/>
+  <rect x="64" y="724" width="5" height="34" rx="2.5" fill="#d97706"/>
+  <circle cx="98" cy="741" r="15" fill="#d97706"/><text x="98" y="746" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">9</text>
+  <text x="122" y="736" font-size="14" font-weight="700" fill="#1f2937">Pre-submission audit</text>
+  <text x="122" y="755" font-size="11" fill="#64748b">gaps → fix &amp; loop · else submit</text>
+  <rect x="376" y="728" width="166" height="26" rx="13" fill="#eef2f7" stroke="#e2e8f0"/>
+  <circle cx="390" cy="741" r="2.4" fill="#6366f1"/>
+  <text x="399" y="745" font-size="10" font-family="monospace" fill="#64748b">reporting_check.py</text>
+
+  <!-- submit node -->
+  <rect x="94" y="788" width="240" height="38" rx="19" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="214" y="812" font-size="12.5" font-weight="600" fill="#1f2937" text-anchor="middle">Submit</text>
+
+  <!-- review node -->
+  <rect x="94" y="844" width="240" height="38" rx="19" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="214" y="868" font-size="12.5" font-weight="600" fill="#1f2937" text-anchor="middle">Peer review</text>
+
+  <!-- 10 -->
+  <rect x="64" y="900" width="300" height="50" rx="13" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <rect x="64" y="912" width="5" height="26" rx="2.5" fill="#6366f1"/>
+  <circle cx="98" cy="925" r="15" fill="#6366f1"/><text x="98" y="930" font-size="11.5" font-weight="700" fill="#fff" text-anchor="middle">10</text>
+  <text x="124" y="930" font-size="13.5" fill="#1f2937">Reviewer rebuttal</text>
+  <rect x="376" y="912" width="166" height="26" rx="13" fill="#eef2f7" stroke="#e2e8f0"/>
+  <circle cx="390" cy="925" r="2.4" fill="#6366f1"/>
+  <text x="399" y="929" font-size="10" font-family="monospace" fill="#64748b">rebuttal_build.py</text>
+
+  <!-- revise node -->
+  <rect x="94" y="966" width="240" height="38" rx="19" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="214" y="990" font-size="12.5" font-weight="600" fill="#1f2937" text-anchor="middle">Revise &amp; resubmit</text>
+
+  <!-- loop labels -->
+  <text x="46" y="564" font-size="10" font-weight="600" fill="#d97706" text-anchor="middle" transform="rotate(-90 46 564)">audit → fix gaps</text>
+  <text x="28" y="666" font-size="10" font-weight="600" fill="#d97706" text-anchor="middle" transform="rotate(-90 28 666)">reviewers → revise</text>
+
+  <!-- ============ LEGEND COLUMN ============ -->
+  <!-- card 1: standards -->
+  <rect x="600" y="118" width="296" height="180" rx="13" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="618" y="144" font-size="12.5" font-weight="700" fill="#1f2937">paper_type → mandatory standard</text>
+  <line x1="618" y1="154" x2="878" y2="154" stroke="#e2e8f0"/>
+  <g font-size="11.5">
+    <text x="618" y="176" fill="#1f2937" font-weight="600">medical-imaging</text><text x="878" y="176" fill="#6366f1" font-weight="700" text-anchor="end">CLAIM</text>
+    <text x="618" y="200" fill="#1f2937" font-weight="600">clinical-ml</text><text x="878" y="200" fill="#6366f1" font-weight="700" text-anchor="end">TRIPOD+AI</text>
+    <text x="618" y="224" fill="#1f2937" font-weight="600">prospective trial</text><text x="878" y="224" fill="#6366f1" font-weight="700" text-anchor="end">CONSORT-AI</text>
+    <text x="618" y="248" fill="#1f2937" font-weight="600">diagnostic accuracy</text><text x="878" y="248" fill="#6366f1" font-weight="700" text-anchor="end">STARD</text>
+    <text x="618" y="272" fill="#1f2937" font-weight="600">systematic review</text><text x="878" y="272" fill="#6366f1" font-weight="700" text-anchor="end">PRISMA</text>
+  </g>
+
+  <!-- card 2: hard floor -->
+  <rect x="600" y="310" width="296" height="138" rx="13" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="618" y="336" font-size="12.5" font-weight="700" fill="#d97706">Always-on hard floor</text>
+  <line x1="618" y1="346" x2="878" y2="346" stroke="#e2e8f0"/>
+  <g font-size="11.5" fill="#64748b">
+    <text x="618" y="368"><tspan fill="#d97706">✓</tspan>  external validation (other site/scanner)</text>
+    <text x="618" y="392"><tspan fill="#d97706">✓</tspan>  patient-level split · no leakage</text>
+    <text x="618" y="416"><tspan fill="#d97706">✓</tspan>  95% CI · effect size · correction</text>
+    <text x="618" y="440"><tspan fill="#d97706">✓</tspan>  calibration · subgroup &amp; failure</text>
+  </g>
+
+  <!-- card 3: routing axes -->
+  <rect x="600" y="460" width="296" height="116" rx="13" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="618" y="486" font-size="12.5" font-weight="700" fill="#1f2937">Routing axes (manifest)</text>
+  <line x1="618" y1="496" x2="878" y2="496" stroke="#e2e8f0"/>
+  <g font-size="11.5" fill="#64748b">
+    <text x="618" y="518"><tspan fill="#1f2937" font-weight="600">stage</tspan>  (1–10, multi) — primary axis</text>
+    <text x="618" y="540"><tspan fill="#1f2937" font-weight="600">paper_type</tspan>  → standard above</text>
+    <text x="618" y="562"><tspan fill="#1f2937" font-weight="600">section · venue · language</tspan></text>
+  </g>
+
+  <!-- card 4: never fabricate -->
+  <rect x="600" y="588" width="296" height="92" rx="13" fill="#d97706" fill-opacity="0.10" stroke="#d97706" stroke-width="1.5"/>
+  <text x="618" y="614" font-size="12.5" font-weight="700" fill="#1f2937">Never fabricate</text>
+  <text x="618" y="636" font-size="11.5" fill="#64748b">numbers · p · CI · DOI · ethics IDs · citations</text>
+  <text x="618" y="660" font-size="11.5" fill="#64748b">missing → <tspan font-family="monospace" font-weight="700" fill="#d97706">[待补充：…]</tspan></text>
+</svg>

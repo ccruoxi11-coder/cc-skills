@@ -13,6 +13,10 @@ lint.md
 claim_check.md
 response.md
 
+# ...but DO keep committed documentation diagrams
+!cs-biomed-paper/docs/
+!cs-biomed-paper/docs/**
+
 # OS / editor
 .DS_Store
 Thumbs.db

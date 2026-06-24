@@ -27,6 +27,12 @@
 - **可复现与伦理**:数据/代码可用性、随机种子、IRB/伦理、脱敏合规;**绝不编造**样本量、p 值、
   AUC、CI、DOI、伦理审批号或引用,缺失一律标 `[待补充：…]`。
 
+流程总览(从选题到审稿回复的 10 阶段管线 + 投稿前自查/审稿回环):
+
+<p align="center">
+  <img src="cs-biomed-paper/docs/workflow.svg" alt="cs-biomed-paper 论文写作流程图" width="760">
+</p>
+
 详细设计与目录见 [`cs-biomed-paper/README.md`](cs-biomed-paper/README.md)。
 
 ---
