@@ -1,0 +1,14 @@
+# Dependencies for cs-biomed-paper scripts.
+# Most scripts are standard-library only and need NO install:
+#   - ref_search_verify.py      (urllib; hits Crossref + OpenAlex, no API key)
+#   - reporting_check.py        (stdlib)
+#   - rebuttal_build.py         (stdlib)
+#   - stats_leakage_lint.py     (stdlib)
+#   - journal_style_profile.py  (stdlib)
+# Only figure_template.py needs third-party packages:
+
+matplotlib>=3.6,<4.0
+numpy>=1.23,<3.0
+
+# Optional, only if you extend ref_search_verify.py to use requests instead of urllib:
+# requests>=2.28,<3.0

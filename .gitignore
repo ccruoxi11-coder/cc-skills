@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Generated artefacts from the scripts (do not commit user outputs)
+*.bib
+*.ris
+*.pdf
+*.svg
+fit.md
+lint.md
+claim_check.md
+response.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

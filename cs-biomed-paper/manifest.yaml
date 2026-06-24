@@ -1,0 +1,145 @@
+name: cs-biomed-paper
+version: 1.0.0
+description: >
+  Declarative manifest for the static/dynamic split. SKILL.md uses this to decide
+  which fragments to load for a computer-science x biomedical paper-writing request.
+  The primary axis is `stage` (the 10-step selection-to-submission pipeline);
+  `paper_type` selects the mandatory reporting standard; `section`, `venue`, and
+  `language` refine drafting. Heavy material (reporting-standard checklists, the
+  statistics handbook, figure standards, rebuttal patterns, venue mechanics) lives
+  in references/ and loads on demand so a short run stays cheap.
+
+always_load:
+  - static/core/stance.md
+  - static/core/workflow.md
+  - static/core/output-format.md
+
+axes:
+  stage:
+    detect: |
+      Identify which pipeline stage(s) the request touches. This is the primary
+      axis and is usually multi-valued (e.g. "design experiments + draft method").
+      Map loose phrasings: "找文献/综述" -> 02; "实验怎么设计/基线消融" -> 04;
+      "配图/画图" -> 05; "润色/中译英" -> 07; "数据可用性/代码开源" -> 08;
+      "会不会被拒/自查" -> 09; "回复审稿" -> 10. If the user just says "帮我写论文"
+      without a stage, start at 01 and walk the workflow.
+    values:
+      "01-topic-claim":        static/fragments/stage/01-topic-claim.md
+      "02-litreview":          static/fragments/stage/02-litreview.md
+      "03-method":             static/fragments/stage/03-method.md
+      "04-experiment-stats":   static/fragments/stage/04-experiment-stats.md
+      "05-figures":            static/fragments/stage/05-figures.md
+      "06-section-writing":    static/fragments/stage/06-section-writing.md
+      "07-polish-en":          static/fragments/stage/07-polish-en.md
+      "08-citation-data-fair": static/fragments/stage/08-citation-data-fair.md
+      "09-prereview-risk":     static/fragments/stage/09-prereview-risk.md
+      "10-rebuttal":           static/fragments/stage/10-rebuttal.md
+    multi: true
+
+  section:
+    detect: |
+      Only relevant when drafting/restructuring prose (usually stage 06). The user
+      may name one or several sections. Title and abstract are planned early but
+      drafted last. Map Chinese cues: 标题/题目 -> title; 摘要 -> abstract;
+      引言/前言/介绍 -> intro; 相关工作/相关研究 -> related-work; 方法/方法部分/材料与方法
+      -> method; 实验/实验设置/实验设计 -> experiments; 结果 -> results;
+      讨论 -> discussion; 结论/总结 -> conclusion.
+    values:
+      title:         static/fragments/section/title.md
+      abstract:      static/fragments/section/abstract.md
+      intro:         static/fragments/section/intro.md
+      related-work:  static/fragments/section/related-work.md
+      method:        static/fragments/section/method.md
+      experiments:   static/fragments/section/experiments.md
+      results:       static/fragments/section/results.md
+      discussion:    static/fragments/section/discussion.md
+      conclusion:    static/fragments/section/conclusion.md
+    multi: true
+
+  paper_type:
+    detect: |
+      Decide the kind of cross-disciplinary work. This selects the MANDATORY
+      reporting standard, so detect it early. Cues (English / 中文):
+      images/segmentation/detection/registration/reconstruction/radiomics,
+      医学影像/影像/分割/检测/配准/重建/影像组学 -> medical-imaging (CLAIM);
+      patient-level risk/diagnosis/prognosis model, 临床预测模型/风险预测/诊断模型/预后/列线图/EHR
+      -> clinical-ml (TRIPOD+AI; CONSORT-AI if a prospective trial);
+      ECG/EEG/EMG/PPG/IMU/wearable, 心电/脑电/肌电/光电容积/加速度/可穿戴/生理信号/时序信号
+      -> biosignal-wearable;
+      sequencing/expression/variant/single-cell/multi-omics, 测序/表达谱/变异/单细胞/组学/蛋白组/
+      微生物组/转录组 -> bioinformatics-omics;
+      a new method/architecture/loss/benchmark/dataset, 新方法/新模型/新架构/损失函数/基准/数据集
+      -> methods-benchmark;
+      a literature synthesis, 系统综述/系统评价/meta分析/荟萃分析 -> systematic-review (PRISMA).
+      Ask if genuinely unclear; otherwise fall back to the default below.
+    values:
+      medical-imaging:        static/fragments/paper_type/medical-imaging.md
+      clinical-ml:            static/fragments/paper_type/clinical-ml.md
+      bioinformatics-omics:   static/fragments/paper_type/bioinformatics-omics.md
+      biosignal-wearable:     static/fragments/paper_type/biosignal-wearable.md
+      methods-benchmark:      static/fragments/paper_type/methods-benchmark.md
+      systematic-review:      static/fragments/paper_type/systematic-review.md
+    default: methods-benchmark
+    multi: false
+
+  venue:
+    detect: |
+      Use the venue the user names. "Nature 子刊 / npj / Nat Med / Nat BME" ->
+      nature-family. "TMI / MedIA / TBME / JBHI" -> ieee-tmi-media. "MICCAI / CVPR /
+      NeurIPS / ICLR / ML conference" -> miccai-cvpr-neurips. Otherwise a generic
+      SCI/IF journal -> general-sci.
+    values:
+      nature-family:        static/fragments/venue/nature-family.md
+      ieee-tmi-media:       static/fragments/venue/ieee-tmi-media.md
+      miccai-cvpr-neurips:  static/fragments/venue/miccai-cvpr-neurips.md
+      general-sci:          static/fragments/venue/general-sci.md
+    default: general-sci
+    multi: false
+
+  language:
+    detect: |
+      Detect the source language of the user's notes. Use zh-to-en when the input
+      is Chinese, mixed Chinese-English, or organized as Chinese lab notes.
+      Otherwise use en.
+    values:
+      zh-to-en:  static/fragments/language/zh-to-en.md
+      en:        static/fragments/language/en.md
+    default: zh-to-en
+    multi: false
+
+references:
+  on_demand:
+    - condition: paper_type is medical-imaging — check manuscript against the CLAIM checklist
+      path: references/reporting-standards/claim.md
+    - condition: paper_type is clinical-ml — check against TRIPOD+AI (prediction models)
+      path: references/reporting-standards/tripod-ai.md
+    - condition: a prospective/interventional clinical trial of an AI system — CONSORT-AI (and SPIRIT-AI for protocols)
+      path: references/reporting-standards/consort-ai.md
+    - condition: a diagnostic-accuracy study (sensitivity/specificity vs a reference standard) — STARD
+      path: references/reporting-standards/stard.md
+    - condition: paper_type is systematic-review or meta-analysis — PRISMA
+      path: references/reporting-standards/prisma.md
+    - condition: which standard applies and how the standards relate (overview/decision table)
+      path: references/reporting-standards/index.md
+    - condition: statistical design — mixed effects/repeated measures, CIs & effect sizes, multiple-comparison correction, subject/site-level splits, leakage avoidance, sample size
+      path: references/statistics-handbook.md
+    - condition: making a submission-grade figure — sizing, fonts, colour, panels, accessibility, file formats
+      path: references/figure-standards.md
+    - condition: structuring a point-by-point reviewer reply, tone, and common objection patterns
+      path: references/rebuttal-patterns.md
+    - condition: venue-specific submission mechanics, formatting, cover letter, and norms
+      path: references/venue-submission.md
+    - condition: matching a draft to a target journal's house style using a few of its published papers as exemplars (stage 07/09)
+      path: references/journal-fit.md
+    - condition: multi-source literature search + DOI/citation verification, export .bib/.ris
+      path: scripts/ref_search_verify.py
+    - condition: auto-check a manuscript against a chosen reporting standard, list missing items
+      path: scripts/reporting_check.py
+    - condition: lint a manuscript for stats & data-leakage risks (per-sample splits, no CI, uncorrected p, no calibration, no external validation, missing ethics) — stage 04/09
+      path: scripts/stats_leakage_lint.py
+    - condition: profile a target journal's house style from exemplar papers and audit a draft against it — stage 07/09
+      path: scripts/journal_style_profile.py
+    - condition: generate a submission-grade matplotlib/R figure template, output .pdf/.svg
+      path: scripts/figure_template.py
+    - condition: turn raw reviewer comments into a structured point-by-point rebuttal skeleton
+      path: scripts/rebuttal_build.py
